@@ -13,6 +13,7 @@ import { ColorModeContextProvider } from "@contexts/color-mode";
 import { authProviderClient } from "@providers/auth-provider";
 import { dataProvider } from "@providers/data-provider";
 import "@refinedev/antd/dist/reset.css";
+import { liveProvider } from "@providers/live-provider";
 
 export const metadata: Metadata = {
   title: "Refine",
@@ -44,6 +45,7 @@ export default function RootLayout({
                     routerProvider={routerProvider}
                     authProvider={authProviderClient}
                     dataProvider={dataProvider}
+                    liveProvider={liveProvider}
                     notificationProvider={useNotificationProvider}
                     resources={[
                       {
@@ -66,8 +68,16 @@ export default function RootLayout({
                           canDelete: true,
                         },
                       },
+                      {
+                        name: "liveproviders",
+                        list: "/liveproviders",
+                        meta: {
+                          canDelete: false,
+                        },
+                      },
                     ]}
                     options={{
+                      liveMode: "auto",
                       syncWithLocation: true,
                       warnWhenUnsavedChanges: true,
                       useNewQueryKeys: true,
